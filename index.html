@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Habit Tracker</h1>
+
+  <form id="add-habit-form">
+    <input type="text" id="name" placeholder="Habit name" required>
+    <select id="category" required>
+      <option value="Health">Health</option>
+      <option value="Productivity">Productivity</option>
+      <option value="Mindfulness">Mindfulness</option>
+      <option value="Learning">Learning</option>
+      <option value="Other">Other</option>
+    </select>
+    <select id="frequency" required>
+      <option value="Daily">Daily</option>
+      <option value="Weekly">Weekly</option>
+    </select>
+    <button type="submit">Add Habit</button>
+  </form>
+
+  <table id="habit-table">
+    <thead>
+      <tr><th>Habit</th><th>Category</th><th>Frequency</th><th>Check-ins</th></tr>
+    </thead>
+    <tbody id="habit-list-body"></tbody>
+  </table>
+
+  <script src="js/habits.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
