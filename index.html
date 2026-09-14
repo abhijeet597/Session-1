@@ -24,9 +24,23 @@
     <button type="submit">Add Habit</button>
   </form>
 
+  <div id="sort-controls">
+    <label for="sort-field">Sort by</label>
+    <select id="sort-field">
+      <option value="name">Name</option>
+      <option value="category">Category</option>
+      <option value="frequency">Frequency</option>
+      <option value="checkins">Check-ins</option>
+    </select>
+    <select id="sort-dir">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </div>
+
   <table id="habit-table">
     <thead>
-      <tr><th>Habit</th><th>Category</th><th>Frequency</th><th>Check-ins</th></tr>
+      <tr><th>Habit</th><th>Category</th><th>Frequency</th><th id="sort-checkins-header" class="sortable">Check-ins</th><th>Actions</th></tr>
     </thead>
     <tbody id="habit-list-body"></tbody>
   </table>

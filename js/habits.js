@@ -2,7 +2,7 @@
 
 const CATEGORIES = ['Health', 'Productivity', 'Mindfulness', 'Learning', 'Other'];
 
-let habits = [
+let habitList = [
   { id: 1, name: 'Morning run', category: 'Health', frequency: 'Daily', completedDates: ['2026-09-01', '2026-09-02'] },
   { id: 2, name: 'Read 20 pages', category: 'Learning', frequency: 'Daily', completedDates: ['2026-09-01'] },
   { id: 3, name: 'Meditate', category: 'Mindfulness', frequency: 'Daily', completedDates: [] },
@@ -13,10 +13,39 @@ let nextId = 5;
 
 function addHabit(name, category, frequency) {
   const habit = { id: nextId++, name, category, frequency, completedDates: [] };
-  habits.push(habit);
+  console.log('addHabit — created:', habit);
+  habitList.push(habit);
   return habit;
 }
 
 function getHabits() {
-  return habits;
+  return habitList;
+}
+
+function todayISO() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+function checkInHabit(id) {
+  const habit = habitList.find((h) => h.id === id);
+  if (!habit) return null;
+  const today = todayISO();
+  if (!habit.completedDates.includes(today)) {
+    habit.completedDates.push(today);
+  }
+  return habit;
+}
+
+function sortHabits(list, field, dir) {
+  const sorted = [...list].sort((a, b) => {
+    if (field === 'checkins') {
+      return a.completedDates.length - b.completedDates.length;
+    }
+    const av = String(a[field]).toLowerCase();
+    const bv = String(b[field]).toLowerCase();
+    return av.localeCompare(bv);
+  });
+  return dir === 'desc' ? sorted.reverse() : sorted;
 }
